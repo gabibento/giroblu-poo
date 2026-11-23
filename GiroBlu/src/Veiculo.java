@@ -22,6 +22,40 @@ public abstract class Veiculo {
         this.status = StatusVeiculo.EM_USO;
     }
 
+    public void finalizarUso(int duracaoMinutos) {
+
+        if (status != StatusVeiculo.EM_USO) {
+            throw new IllegalStateException("Veículo não está em uso");
+        }
+
+        if (duracaoMinutos < 0) {
+            throw new IllegalArgumentException("Duração inválida");
+        }
+
+        this.status = StatusVeiculo.DISPONIVEL;
+    }
+
+    public void enviarParaManutencao() {
+
+        if (status == StatusVeiculo.EM_USO) {
+            throw new IllegalStateException("Não é possível enviar um veículo em uso para manutenção");
+        }
+
+        if (status == StatusVeiculo.EM_MANUTENCAO) {
+            throw new IllegalStateException("Veículo já está em manutenção");
+        }
+
+        status = StatusVeiculo.EM_MANUTENCAO;
+    }
+
+    public void devolverManutencao() {
+
+        if (status != StatusVeiculo.EM_MANUTENCAO) {
+            throw new IllegalStateException("O veículo não está em manutenção");
+        }
+        status = StatusVeiculo.DISPONIVEL;
+    }
+
     public abstract boolean podeSerLiberado();
 
     public String getCodigo() {
@@ -53,13 +87,9 @@ public abstract class Veiculo {
     }
 
 
-    public double getTaxaDesbloqueio() {
-        return TAXA_DESBLOQUEIO;
-    }
+    public abstract double getTaxaDesbloqueio();
 
-    public double getTaxaMinuto() {
-        return TAXA_MINUTO;
-    }
+    public abstract double getTaxaMinuto();
 
     public abstract double getDescontoUniversitario();
 }

@@ -13,11 +13,26 @@ public abstract class VeiculoEletrico extends Veiculo {
     }
 
     @Override
-    public void liberarVeiculo() {
-        if (bateria < 20) {
-            throw new IllegalStateException("Bateria fraca: " + bateria + "%");
-        }
+    public void finalizarUso(int duracaoMinutos) {
+        super.finalizarUso(duracaoMinutos);
 
+        int consumo = duracaoMinutos * getConsumoPorMinuto();
+
+        this.bateria -= consumo;
+
+        if (this.bateria < 0) {
+            this.bateria = 0;
+        }
     }
+
+    public void recarregarBateria() {
+
+        if (getStatus() == StatusVeiculo.EM_USO) {
+            throw new IllegalStateException("Não é possível recarregar um veículo em uso");
+        }
+        bateria = 100;
+    }
+
+    protected abstract int getConsumoPorMinuto();
 
 }

@@ -1,12 +1,12 @@
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Recarga {
-    private Date data;
-    private Time hora;
+    private LocalDate data;
+    private LocalTime hora;
     private double valor;
 
-    public Recarga(Date data, Time hora, double valor) {
+    public Recarga(LocalDate data, LocalTime hora, double valor) {
         if(valor <= 0) {
             throw new IllegalArgumentException("Valor deve ser positivo");
         }
@@ -16,11 +16,11 @@ public class Recarga {
         this.valor = valor;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 

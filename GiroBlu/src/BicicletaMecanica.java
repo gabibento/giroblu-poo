@@ -1,4 +1,5 @@
 public class BicicletaMecanica extends Veiculo {
+
     private static double TAXA_DESBLOQUEIO = 1.0;
     private static double TAXA_MINUTO = 0.15;
 
@@ -6,14 +7,20 @@ public class BicicletaMecanica extends Veiculo {
         super(codigo, modelo, estacao, status);
     }
 
-    @Override
-    public void liberarVeiculo() {
-
-    }
 
     @Override
     public boolean podeSerLiberado() {
         return getStatus().equals(StatusVeiculo.DISPONIVEL);
+    }
+
+    @Override
+    public double getTaxaDesbloqueio() {
+        return TAXA_DESBLOQUEIO;
+    }
+
+    @Override
+    public double getTaxaMinuto() {
+        return TAXA_MINUTO;
     }
 
     @Override

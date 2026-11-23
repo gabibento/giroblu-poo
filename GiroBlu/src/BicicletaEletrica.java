@@ -8,6 +8,21 @@ public class BicicletaEletrica extends VeiculoEletrico {
     }
 
     @Override
+    public double getTaxaDesbloqueio() {
+        return TAXA_DESBLOQUEIO;
+    }
+
+    @Override
+    public double getTaxaMinuto() {
+        return TAXA_MINUTO;
+    }
+
+    @Override
+    protected int getConsumoPorMinuto() {
+        return 1;
+    }
+
+    @Override
     public double getDescontoUniversitario() {
         return 0.50;
     }
