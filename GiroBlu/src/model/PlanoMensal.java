@@ -1,3 +1,5 @@
+package model;
+
 public class PlanoMensal implements Plano {
     @Override
     public double calcularValorViagem(Veiculo veiculo, int duracao) {

@@ -1,4 +1,9 @@
+package model;
+
+import model.exceptions.GiroBluException;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Estacao {
@@ -8,15 +13,23 @@ public class Estacao {
     private List<Veiculo> veiculos;
 
     public Estacao(String nome, int capacidade) {
+
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new GiroBluException("Nome da estação obrigatório");
+        }
+
+        if (capacidade <= 0) {
+            throw new GiroBluException("Capacidade da estação deve ser maior que zero vagas");
+        }
         this.nome = nome;
         this.capacidade = capacidade;
         this.veiculos = new ArrayList<>();
     }
 
-    public void adicionarVeiculo(Veiculo veiculo) {
+    protected void adicionarVeiculo(Veiculo veiculo) {
 
         if (veiculos.size() >= capacidade) {
-            throw new IllegalStateException("Estação sem vagas disponíveis");
+            throw new GiroBluException("Estação sem vagas disponíveis");
         }
 
         if (veiculos.contains(veiculo)) {
@@ -27,7 +40,7 @@ public class Estacao {
         veiculo.setEstacao(this);
     }
 
-    public void removerVeiculo(Veiculo veiculo) {
+    protected void removerVeiculo(Veiculo veiculo) {
 
         if (!veiculos.contains(veiculo)){
             throw new IllegalStateException("Veículo não encontrado nesta estação");
@@ -45,11 +58,25 @@ public class Estacao {
         List<Veiculo> disponiveis = new ArrayList<>();
 
         for (Veiculo veiculo : veiculos) {
-            if (veiculo.podeSerLiberado()) {
+            if (veiculo.getStatus() == StatusVeiculo.DISPONIVEL) {
                 disponiveis.add(veiculo);
             }
         }
 
         return disponiveis;
     }
+
+    public List<Veiculo> getVeiculos() {
+        return Collections.unmodifiableList(veiculos);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getCapacidade() {
+        return capacidade;
+    }
+
+
 }

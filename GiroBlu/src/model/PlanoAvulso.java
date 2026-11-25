@@ -1,3 +1,5 @@
+package model;
+
 public class PlanoAvulso implements Plano {
 
     @Override

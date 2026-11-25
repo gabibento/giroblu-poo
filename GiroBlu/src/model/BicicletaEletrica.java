@@ -1,10 +1,17 @@
+package model;
+
 public class BicicletaEletrica extends VeiculoEletrico {
 
-    private static double TAXA_DESBLOQUEIO = 2.0;
-    private static double TAXA_MINUTO = 0.30;
+    private final static double TAXA_DESBLOQUEIO = 2.0;
+    private final static double TAXA_MINUTO = 0.30;
 
-    public BicicletaEletrica(String codigo, String modelo, Estacao estacao, String status) {
+    public BicicletaEletrica(String codigo, String modelo, Estacao estacao, StatusVeiculo status) {
         super(codigo, modelo, estacao, status);
+    }
+
+    @Override
+    public String getTipo() {
+        return "Bicicleta Elétrica";
     }
 
     @Override
@@ -26,4 +33,6 @@ public class BicicletaEletrica extends VeiculoEletrico {
     public double getDescontoUniversitario() {
         return 0.50;
     }
+
+
 }

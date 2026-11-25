@@ -1,9 +1,16 @@
-public class PatineteEletrico extends VeiculoEletrico {
-    private static double TAXA_DESBLOQUEIO = 3.0;
-    private static double TAXA_MINUTO = 0.40;
+package model;
 
-    public PatineteEletrico(String codigo, String modelo, Estacao estacao, String status) {
+public class PatineteEletrico extends VeiculoEletrico {
+    private final static double TAXA_DESBLOQUEIO = 3.0;
+    private final static double TAXA_MINUTO = 0.40;
+
+    public PatineteEletrico(String codigo, String modelo, Estacao estacao, StatusVeiculo status) {
         super(codigo, modelo, estacao, status);
+    }
+
+    @Override
+    public String getTipo() {
+        return "Patinete Elétrico";
     }
 
     @Override

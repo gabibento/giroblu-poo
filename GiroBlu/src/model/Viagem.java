@@ -1,3 +1,6 @@
+package model;
+
+import model.exceptions.GiroBluException;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -23,6 +26,12 @@ public class Viagem {
 
     public Viagem(Usuario usuario, Veiculo veiculo, Estacao estacaoOrigem,
                   LocalDate data, LocalTime hora) {
+        if (usuario == null || veiculo == null || estacaoOrigem == null) {
+            throw new IllegalArgumentException("Usuário, veículo e estação de origem são obrigatórios");
+        }
+        if (data == null || hora == null) {
+            throw new IllegalArgumentException("Data e hora de início são obrigatórias");
+        }
         this.usuario = usuario;
         this.veiculo = veiculo;
         this.estacaoOrigem = estacaoOrigem;
@@ -30,27 +39,27 @@ public class Viagem {
         this.horaInicio = hora;
     }
 
-    public void encerrarViagem(Estacao estacao, LocalDate data, LocalTime hora) {
+    protected void encerrarViagem(Estacao estacao, LocalDate data, LocalTime hora) {
 
         if (dataFim != null) {
             throw new IllegalStateException("Esta viagem já foi encerrada");
         }
 
         if (estacao == null || data == null || hora == null) {
-            throw new IllegalArgumentException("Dados de encerramento inválidos");
+            throw new GiroBluException("Dados de encerramento inválidos");
         }
 
         LocalDateTime inicio = LocalDateTime.of(dataInicio, horaInicio);
         LocalDateTime fim = LocalDateTime.of(data, hora);
 
         if (!fim.isAfter(inicio)) {
-            throw new IllegalArgumentException(
+            throw new GiroBluException(
                     "A data e o horário de encerramento devem ser posteriores ao início"
             );
         }
 
         if (estacao.getVagasDisponiveis() <= 0) {
-            throw new IllegalStateException("Estação sem vagas disponíveis");
+            throw new GiroBluException("Estação sem vagas disponíveis");
         }
 
         duracaoMinutos = (int) Duration.between(inicio, fim).toMinutes();

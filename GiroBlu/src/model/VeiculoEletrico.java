@@ -1,8 +1,12 @@
+package model;
+
+import model.exceptions.GiroBluException;
+
 public abstract class VeiculoEletrico extends Veiculo {
 
     private int bateria;
 
-    public VeiculoEletrico(String codigo, String modelo, Estacao estacao, String status) {
+    public VeiculoEletrico(String codigo, String modelo, Estacao estacao, StatusVeiculo status) {
         super(codigo, modelo, estacao, status);
         bateria = 100;
     }
@@ -13,7 +17,7 @@ public abstract class VeiculoEletrico extends Veiculo {
     }
 
     @Override
-    public void finalizarUso(int duracaoMinutos) {
+    protected void finalizarUso(int duracaoMinutos) {
         super.finalizarUso(duracaoMinutos);
 
         int consumo = duracaoMinutos * getConsumoPorMinuto();
@@ -25,12 +29,22 @@ public abstract class VeiculoEletrico extends Veiculo {
         }
     }
 
+    @Override
     public void recarregarBateria() {
 
         if (getStatus() == StatusVeiculo.EM_USO) {
-            throw new IllegalStateException("Não é possível recarregar um veículo em uso");
+            throw new GiroBluException("Não é possível recarregar um veículo em uso");
         }
         bateria = 100;
+    }
+
+    @Override
+    public String descricao() {
+        return super.descricao() + " | Bateria: " + bateria + "%";
+    }
+
+    public int getBateria() {
+        return bateria;
     }
 
     protected abstract int getConsumoPorMinuto();

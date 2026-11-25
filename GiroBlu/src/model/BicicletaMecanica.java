@@ -1,9 +1,11 @@
+package model;
+
 public class BicicletaMecanica extends Veiculo {
 
-    private static double TAXA_DESBLOQUEIO = 1.0;
-    private static double TAXA_MINUTO = 0.15;
+    private final static double TAXA_DESBLOQUEIO = 1.0;
+    private final static double TAXA_MINUTO = 0.15;
 
-    public BicicletaMecanica(String codigo, String modelo, Estacao estacao, String status) {
+    public BicicletaMecanica(String codigo, String modelo, Estacao estacao, StatusVeiculo status) {
         super(codigo, modelo, estacao, status);
     }
 
@@ -11,6 +13,11 @@ public class BicicletaMecanica extends Veiculo {
     @Override
     public boolean podeSerLiberado() {
         return getStatus().equals(StatusVeiculo.DISPONIVEL);
+    }
+
+    @Override
+    public String getTipo() {
+        return "Bicicleta Mecânica";
     }
 
     @Override

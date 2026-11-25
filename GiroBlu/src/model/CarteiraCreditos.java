@@ -1,3 +1,6 @@
+package model;
+
+import model.exceptions.GiroBluException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -6,23 +9,24 @@ import java.util.List;
 
 public class CarteiraCreditos {
     private double saldo;
-    private double saldoInicial;
     private List<Recarga> recargas;
     private List<Viagem> viagens;
 
-    public CarteiraCreditos(double saldo) {
-        this.saldo = saldo;
-        this.saldoInicial = saldo;
+    public CarteiraCreditos() {
+        this.saldo = 0;
         this.recargas = new ArrayList<>();
         this.viagens = new ArrayList<>();
     }
 
     public void adicionarRecarga(Recarga recarga) {
+        if (recarga == null) {
+            throw new GiroBluException("Recarga deve ser informada");
+        }
         saldo += recarga.getValor();
         recargas.add(recarga);
     }
 
-    public void debitar(Viagem viagem) {
+    protected void debitar(Viagem viagem) {
         saldo -= viagem.getValor();
         viagens.add(viagem);
     }
@@ -49,12 +53,12 @@ public class CarteiraCreditos {
 
         lancamentos.sort(Comparator.comparing(LancamentoExtrato::getDataHora));
 
-        double saldoAcumulado = saldoInicial;
+        double saldoAcumulado = 0;
 
         for (LancamentoExtrato lancamento : lancamentos) {
             saldoAcumulado += lancamento.getValor();
 
-            lancamento.setSaldoApos(Math.round(saldoAcumulado * 100.0) / 100.0);
+            lancamento.setSaldoAcumulado(Math.round(saldoAcumulado * 100.0) / 100.0);
         }
 
         return lancamentos;

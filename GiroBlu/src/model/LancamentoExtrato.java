@@ -1,15 +1,21 @@
+package model;
+
 import java.time.LocalDateTime;
 
 public class LancamentoExtrato {
     private LocalDateTime dataHora;
     private String descricao;
     private double valor;
-    private double saldoApos;
+    private double saldoAcumulado;
 
     public LancamentoExtrato(LocalDateTime dataHora, String descricao, double valor) {
         this.dataHora = dataHora;
         this.descricao = descricao;
         this.valor = valor;
+    }
+
+    public boolean isCredito() {
+        return valor > 0;
     }
 
     public LocalDateTime getDataHora() {
@@ -24,11 +30,11 @@ public class LancamentoExtrato {
         return valor;
     }
 
-    public double getSaldoApos() {
-        return saldoApos;
+    public double getSaldoAcumulado() {
+        return saldoAcumulado;
     }
 
-    public void setSaldoApos(double saldoApos) {
-        this.saldoApos = saldoApos;
+    protected void setSaldoAcumulado(double saldoAcumulado) {
+        this.saldoAcumulado = saldoAcumulado;
     }
 }

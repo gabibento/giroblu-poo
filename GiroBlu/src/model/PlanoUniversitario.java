@@ -1,3 +1,5 @@
+package model;
+
 public class PlanoUniversitario implements Plano {
 
     @Override

@@ -1,3 +1,7 @@
+package model;
+
+import model.exceptions.GiroBluException;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -8,7 +12,11 @@ public class Recarga {
 
     public Recarga(LocalDate data, LocalTime hora, double valor) {
         if(valor <= 0) {
-            throw new IllegalArgumentException("Valor deve ser positivo");
+            throw new GiroBluException("Valor deve ser positivo");
+        }
+
+        if(data == null || hora == null) {
+            throw new GiroBluException("Data ou hora inválidas");
         }
 
         this.data = data;
