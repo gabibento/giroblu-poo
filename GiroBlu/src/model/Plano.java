@@ -1,6 +1,8 @@
 package model;
 
-public interface Plano {
+import java.io.Serializable;
+
+public interface Plano extends Serializable {
 
     double calcularValorViagem(Veiculo veiculo, int duracaoMinutos);
 

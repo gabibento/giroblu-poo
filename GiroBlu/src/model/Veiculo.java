@@ -1,9 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 import model.exceptions.GiroBluException;
 import model.exceptions.VeiculoIndisponivelException;
 
-public abstract class Veiculo {
+public abstract class Veiculo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String codigo;
     private String modelo;
     private Estacao estacao;

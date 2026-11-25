@@ -1,12 +1,16 @@
 package model;
 
+import java.io.Serializable;
+
 import model.exceptions.GiroBluException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Estacao {
+public class Estacao implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String nome;
     private int capacidade;

@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import model.exceptions.GiroBluException;
 
 import java.time.LocalDateTime;
@@ -7,7 +9,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class CarteiraCreditos {
+public class CarteiraCreditos implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private double saldo;
     private List<Recarga> recargas;
 

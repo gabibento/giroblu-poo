@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import model.exceptions.GiroBluException;
 
 import model.exceptions.VeiculoIndisponivelException;
@@ -10,7 +12,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Usuario {
+public class Usuario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String nome;
     private String email;
     private Plano plano;

@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import model.exceptions.GiroBluException;
 
 import java.time.Duration;
@@ -7,7 +9,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Viagem {
+public class Viagem implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Usuario usuario;
     private Veiculo veiculo;

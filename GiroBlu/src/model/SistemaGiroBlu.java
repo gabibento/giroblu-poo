@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import model.exceptions.GiroBluException;
 
 import java.time.LocalDate;
@@ -9,7 +11,9 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class SistemaGiroBlu {
+public class SistemaGiroBlu implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private List<Estacao> estacoes = new ArrayList<>();
     private List<Veiculo> veiculos = new ArrayList<>();
