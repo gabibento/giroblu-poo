@@ -166,7 +166,7 @@ public class SistemaGiroBlu {
     // ================= Req. 7: extrato =================
 
     public List<LancamentoExtrato> gerarExtrato(String email) {
-        return buscarUsuario(email).getCarteiraCreditos().gerarExtrato();
+        return buscarUsuario(email).gerarExtrato();
     }
 
     // ================= Req. 8: faturamento =================

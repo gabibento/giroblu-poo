@@ -10,12 +10,10 @@ import java.util.List;
 public class CarteiraCreditos {
     private double saldo;
     private List<Recarga> recargas;
-    private List<Viagem> viagens;
 
     public CarteiraCreditos() {
         this.saldo = 0;
         this.recargas = new ArrayList<>();
-        this.viagens = new ArrayList<>();
     }
 
     public void adicionarRecarga(Recarga recarga) {
@@ -28,10 +26,9 @@ public class CarteiraCreditos {
 
     protected void debitar(Viagem viagem) {
         saldo -= viagem.getValor();
-        viagens.add(viagem);
     }
 
-    public List<LancamentoExtrato> gerarExtrato() {
+    public List<LancamentoExtrato> gerarExtrato(List<Viagem> viagens) {
 
         List<LancamentoExtrato> lancamentos = new ArrayList<>();
 

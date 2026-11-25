@@ -87,6 +87,11 @@ public class Usuario {
         return viagemRetorno;
     }
 
+    public List<LancamentoExtrato> gerarExtrato() {
+        return carteiraCreditos.gerarExtrato(viagensConcluidas);
+    }
+
+
 
     public String getNome() {
         return nome;

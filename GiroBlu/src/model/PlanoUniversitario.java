@@ -8,4 +8,9 @@ public class PlanoUniversitario implements Plano {
 
         return valorCheio - (valorCheio) * veiculo.getDescontoUniversitario();
     }
+
+    @Override
+    public String getNome() {
+        return "Universitário";
+    }
 }
