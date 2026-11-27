@@ -4,6 +4,8 @@ import model.exceptions.GiroBluException;
 
 public abstract class VeiculoEletrico extends Veiculo {
 
+    private static final long serialVersionUID = 1L;
+
     private int bateria;
 
     public VeiculoEletrico(String codigo, String modelo, Estacao estacao, StatusVeiculo status) {

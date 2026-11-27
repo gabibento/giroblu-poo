@@ -1,6 +1,9 @@
 package model;
 
 public class PatineteEletrico extends VeiculoEletrico {
+
+    private static final long serialVersionUID = 1L;
+
     private final static double TAXA_DESBLOQUEIO = 3.0;
     private final static double TAXA_MINUTO = 0.40;
 

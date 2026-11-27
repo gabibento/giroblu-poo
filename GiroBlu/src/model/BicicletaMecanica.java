@@ -2,6 +2,8 @@ package model;
 
 public class BicicletaMecanica extends Veiculo {
 
+    private static final long serialVersionUID = 1L;
+
     private final static double TAXA_DESBLOQUEIO = 1.0;
     private final static double TAXA_MINUTO = 0.15;
 
